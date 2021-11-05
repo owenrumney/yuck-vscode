@@ -1,0 +1,94 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "yuck",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#names"
+		},
+		{
+			"include": "#primatives"
+		},
+		{
+			"include": "#arguments"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.yuck",
+					"match": "\\b(defwidget|defwindow|defpoll|defvar|deflisten|geometry|struts|include)\\b"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line",
+					"match": ";.*$"
+				}
+			]
+		},
+		"names": {
+			"patterns": [
+				{
+					"name": "variable",
+					"match": ":[\\w-]+?\\s"
+				}
+			]
+		},
+		"primatives": {
+			"patterns": [
+				{
+					"name": "constant.language.bool",
+					"match": "(false|true)"
+				},
+				{
+					"name": "constant.language.numbers",
+					"match": "\\d+"
+				}
+			]
+		},
+		"arguments": {
+			"patterns": [
+				{
+					"captures": {
+						"1": {
+							"name": "entity.name.type"
+						}
+					},
+					"match": "\\[(.*)\\]"
+				},
+				{
+					"captures": {
+						"1": {
+							"name": "entity.name.type"
+						}
+					},
+					"match": "{(.+?)\\s"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.yuck",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.yuck",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.yuck"
+}
