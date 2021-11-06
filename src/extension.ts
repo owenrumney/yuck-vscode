@@ -3,7 +3,6 @@
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-    // 👍 formatter implemented using API
     vscode.languages.registerDocumentFormattingEditProvider('yuck', {
         provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
 
@@ -21,7 +20,11 @@ export function activate(context: vscode.ExtensionContext) {
                 let openers = (workingLine.match(/\(/g) || []).length;
                 let closers = (workingLine.match(/\)/g) || []).length;
 
-                let replacementLine = "\t".repeat(indents) + workingLine;
+                let replacementLine = "  ".repeat(indents) + workingLine;
+                if (openers == 0 && closers > 0) {
+                    replacementLine = "  ".repeat(indents - 1) + workingLine;
+                }
+                replacementLine = replacementLine.replace(/\)\)/, ')\n)');
                 edits.push(vscode.TextEdit.replace(document.lineAt(i).range, replacementLine));
 
                 if (openers > closers) {

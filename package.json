@@ -1,8 +1,11 @@
 {
     "name": "yuck",
     "displayName": "Yuck",
+    "repository": {
+        "url": "https://github.com/owenrumney/yuck-vscode"
+    },
     "description": "Yuck language support for Eww Widgets",
-    "publisher": "Owen Rumney",
+    "publisher": "eww-yuck",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.58.0"
@@ -39,6 +42,10 @@
         "postinstall": "node ./node_modules/vscode/bin/install && tsc"
     },
     "dependencies": {
+        "typescript": "^4.4.4"
+    },
+    "devDependencies": {
+        "typescript": "^4.4.4",
         "vscode": "^1.1.37"
     }
 }
